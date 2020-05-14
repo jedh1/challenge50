@@ -25,7 +25,7 @@ if os.path.isfile(dotenv_file):
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY =
+SECRET_KEY = 'bs*_hlqc9f8ucol0mr(14_c3i&kun4qpj7miz$*stgz_=$a-vm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -126,5 +126,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#
+
+#Email settings local
+
+#Email settings heroku
+# EMAIL_USE_TLS = True
+# EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
+# EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
+# EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
+# EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
+
 
 django_heroku.settings(locals())
