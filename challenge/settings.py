@@ -131,11 +131,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #Email settings local
 
 #Email settings heroku
-# EMAIL_USE_TLS = True
-# EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
-# EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
-# EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
-# EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
+EMAIL_USE_TLS = True
+EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
+EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
+EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
+EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
 
+ADMINS = [('jed', 'jedhcl@gmail.com')]
 
 django_heroku.settings(locals())
