@@ -25,7 +25,7 @@ if os.path.isfile(dotenv_file):
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'bs*_hlqc9f8ucol0mr(14_c3i&kun4qpj7miz$*stgz_=$a-vm'
+# SECRET_KEY =
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -125,9 +125,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 #
-
+# Extra places for collectstatic to find static files for Heroku
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 #Email settings local
 
 #Email settings heroku
