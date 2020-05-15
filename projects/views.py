@@ -18,3 +18,9 @@ def project_detail(request, pk):
 
 def about(request):
     return render(request, 'about.html')
+
+def clockview(request):
+    return render(request, 'clockview.html')
+
+def sample(request):
+    return render(request, 'sample.html')
