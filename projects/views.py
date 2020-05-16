@@ -19,8 +19,12 @@ def project_detail(request, pk):
 def about(request):
     return render(request, 'about.html')
 
+def sample(request):
+    return render(request, 'sample.html')
+
+# Projects for 30projects30days
 def clockview(request):
     return render(request, 'clockview.html')
 
-def sample(request):
-    return render(request, 'sample.html')
+def validator(request):
+    return render(request, 'validator.html')

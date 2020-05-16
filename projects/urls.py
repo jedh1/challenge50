@@ -6,5 +6,7 @@ urlpatterns = [
     path("<int:pk>/", views.project_detail, name="project_detail"),
     path("about/", views.about, name="about"),
     path("sample/", views.sample, name="sample"),
+    # Projects for 30projects30days
     path("clockview/", views.clockview, name="clockview"),
+    path("validator/", views.validator, name="validator"),
 ]
