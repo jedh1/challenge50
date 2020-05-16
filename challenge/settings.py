@@ -126,6 +126,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Extra places for collectstatic to find static files for Heroku
 # STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
 
+
 #Email settings heroku
 EMAIL_USE_TLS = True
 EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
