@@ -9,4 +9,5 @@ urlpatterns = [
     # Projects for 30projects30days
     path("clockview/", views.clockview, name="clockview"),
     path("validator/", views.validator, name="validator"),
+    path("movie/", views.movie, name="movie"),
 ]

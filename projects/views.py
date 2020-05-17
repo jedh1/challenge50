@@ -28,3 +28,6 @@ def clockview(request):
 
 def validator(request):
     return render(request, 'validator.html')
+
+def movie(request):
+    return render(request, 'movie.html')
