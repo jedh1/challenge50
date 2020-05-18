@@ -10,5 +10,5 @@ urlpatterns = [
     path("clockview/", views.clockview, name="clockview"),
     path("validator/", views.validator, name="validator"),
     path("movie/", views.movie, name="movie"),
-    path("custom_video_player/", views.custom_video_player, name="custom_video_player"),
+    path("video/", views.video, name="video"),
 ]
