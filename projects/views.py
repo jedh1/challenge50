@@ -32,5 +32,5 @@ def validator(request):
 def movie(request):
     return render(request, 'movie.html')
 
-def custom_video_player(request):
-    return render(request, 'custom_video_player.html')
+def video(request):
+    return render(request, 'video.html')
