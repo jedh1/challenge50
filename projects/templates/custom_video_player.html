@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-{% load static %}
+
 
    <head>
       <meta charset="UTG-8">
@@ -10,17 +10,18 @@
 
       <title>Custom Video Player</title>
 
-      <link rel="stylesheet" href="{% static css/custom_video_player_progress.css %}">
-      <link rel="stylesheet" href="{% static css/custom_video_player_style.css %}">
+      {% load static %}
+      <link rel="stylesheet" href="{% static 'css/custom_video_player_progress.css' %}">
+      <link rel="stylesheet" href="{% static 'css/custom_video_player_style.css' %}">
       <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
    </head>
    <body>
       <h1>Custom Video Player</h1>
       <video
-         src="{% static videos/custom_video_player_mibao_beach.mp4 %}"
+         src="{% static 'video/custom_video_player_mibao_beach.mp4' %}"
          id="video"
          class="screen"
-         poster="img/poster.png"
+         poster="{% static 'img/custom_video_player_poster.png' %}"
       ></video>
       <div class="controls">
          <button class="btn" id="play">
@@ -41,8 +42,6 @@
          <span class="timestamp" id="timestamp">00:00</span>
       </div>
 
-      <script src="{% static js/custom_video_player.js %}"></script>
+      <script src="{% static 'js/custom_video_player.js' %}"></script>
    </body>
 </html>
-
-<!-- https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs -->
