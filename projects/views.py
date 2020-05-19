@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from projects.models import Project
 
+from django.core.mail import EmailMultiAlternatives
+from django.template.loader import render_to_string
+
 # Create your views here.
 def project_index(request):
     projects = Project.objects.all()
@@ -20,6 +23,17 @@ def about(request):
     return render(request, 'about.html')
 
 def sample(request):
+    subject = 'Challenge email test'
+    txt_message = 'Have a great day!'
+    html_body = render_to_string('about.html')
+    msg = EmailMultiAlternatives(
+        subject = subject,
+        body = txt_message,
+        from_email = 'csprojects200220@gmail.com',
+        to = [recipient],
+    )
+    msg.attach_alternative(html_body, "text/html")
+    msg.send()
     return render(request, 'sample.html')
 #
 # Projects for 30projects30days
