@@ -30,7 +30,7 @@ def sample(request):
         subject = subject,
         body = txt_message,
         from_email = 'csprojects200220@gmail.com',
-        to = [recipient],
+        to = ['jedhcl@gmail.com'],
     )
     msg.attach_alternative(html_body, "text/html")
     msg.send()
