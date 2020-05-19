@@ -17,19 +17,48 @@ import dotenv
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Load local environment vars when running locallys
+# Load local environment vars when running localy
 dotenv_file = os.path.join(BASE_DIR, ".env")
 if os.path.isfile(dotenv_file):
+    # local settings
     dotenv.load_dotenv(dotenv_file)
+    DATABASES = {
+        'default': {
+            'ENGINE': os.getenv("db_engine"),
+            'NAME': os.getenv("db_name"),
+            'USER': os.getenv("db_user"),
+            'PASSWORD': os.getenv("db_password"),
+            'HOST': os.getenv("db_host"),
+            'PORT': os.getenv("db_port"),
+        }
+    }
+    # SECURITY WARNING: keep the secret key used in production secret!
+    SECRET_KEY = os.getenv("SECRET_KEY")
+    DEBUG = True
 
-# SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY =
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+    # Email settings local
+    EMAIL_HOST = os.getenv("EMAIL_HOST")
+    EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+    EMAIL_PORT = os.getenv("EMAIL_PORT")
+    EMAIL_USE_TLS = os.getenv("EMAIL_USE_TLS")
+    SERVER_EMAIL = EMAIL_HOST_USER
+else:
+    # Production settings
+    # SECURITY WARNING: don't run with debug turned on in production!
+    DEBUG = False
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+    import dj_database_url
+    DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+    # Email settings heroku
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
+    EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
+    EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
+    SERVER_EMAIL = EMAIL_HOST_USER
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
-
 
 # Application definition
 
@@ -77,9 +106,6 @@ WSGI_APPLICATION = 'challenge.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-import dj_database_url
-DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -126,15 +152,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Extra places for collectstatic to find static files for Heroku
 # STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
 
-# Email settings heroku
-EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
-EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
-EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
-EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
-SERVER_EMAIL = EMAIL_HOST_USER
-
 ADMINS = [('jed', 'jedhcl@gmail.com')]
 
-django_heroku.settings(locals())
-#del DATABASES['default']['OPTIONS']['sslmode']
+if not os.path.isfile(dotenv_file):
+    django_heroku.settings(locals())
+    del DATABASES['default']['OPTIONS']['sslmode']
