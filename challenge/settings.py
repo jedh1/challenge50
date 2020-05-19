@@ -56,7 +56,7 @@ else:
     EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
     EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
     EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
-    SERVER_EMAIL = 'csprojects200220@gmail.com'
+    SERVER_EMAIL = EMAIL_HOST_USER
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
