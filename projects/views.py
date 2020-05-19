@@ -21,7 +21,7 @@ def about(request):
 
 def sample(request):
     return render(request, 'sample.html')
-
+#
 # Projects for 30projects30days
 def clockview(request):
     return render(request, 'clockview.html')
