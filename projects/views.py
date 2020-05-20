@@ -48,3 +48,9 @@ def movie(request):
 
 def video(request):
     return render(request, 'video.html')
+
+def exchange_rate(request):
+    return render(request, 'exchange_rate.html')
+
+def dom_array(request):
+    return render(request, 'dom_array.html')

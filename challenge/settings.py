@@ -50,6 +50,13 @@ else:
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
     import dj_database_url
     DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
+    # Email settings heroku
+    EMAIL_USE_TLS = True
+    EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
+    EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
+    EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
+    EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
+    SERVER_EMAIL = 'csprojects200220@gmail.com'
 
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
@@ -97,13 +104,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'challenge.wsgi.application'
 
-# Email settings heroku
-EMAIL_USE_TLS = True
-EMAIL_HOST = os.environ.get('MAILGUN_SMTP_SERVER', '')
-EMAIL_PORT = os.environ.get('MAILGUN_SMTP_PORT', '')
-EMAIL_HOST_USER = os.environ.get('MAILGUN_SMTP_LOGIN', '')
-EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
-SERVER_EMAIL = 'csprojects200220@gmail.com'
 # Database
 
 # Password validation

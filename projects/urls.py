@@ -11,4 +11,6 @@ urlpatterns = [
     path("validator/", views.validator, name="validator"),
     path("movie/", views.movie, name="movie"),
     path("video/", views.video, name="video"),
+    path("exchange_rate/", views.exchange_rate, name="exchange_rate"),
+    path("dom_array/", views.dom_array, name="dom_array"),
 ]
