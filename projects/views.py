@@ -54,3 +54,6 @@ def exchange_rate(request):
 
 def dom_array(request):
     return render(request, 'dom_array.html')
+
+def landing_page(request):
+    return render(request, 'landing_page.html')
