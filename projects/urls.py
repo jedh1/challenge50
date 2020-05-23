@@ -14,4 +14,5 @@ urlpatterns = [
     path("exchange_rate/", views.exchange_rate, name="exchange_rate"),
     path("dom_array/", views.dom_array, name="dom_array"),
     path("landing_page/", views.landing_page, name="landing_page"),
+    path("hangman/", views.landing_page, name="hangman"),
 ]

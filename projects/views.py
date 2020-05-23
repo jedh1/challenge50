@@ -57,3 +57,6 @@ def dom_array(request):
 
 def landing_page(request):
     return render(request, 'landing_page.html')
+
+def hangman(request):
+    return render(request, 'hangman.html')
