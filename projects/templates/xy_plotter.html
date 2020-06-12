@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple XYZ Plotter</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/xyz_plotter.css' %}">
+</head>
+<body>
+   <h1>Simple XYZ Plotter</h1>
+
+   {% if intro %}
+   <p>Example plot:</p>
+   {% endif %}
+
+   <div class="plot-container">
+      {% if messages %}
+      <ul class="messagelist">
+         {% for message in messages %}
+            <li>{{ message }}</li>
+         {% endfor %}
+      </ul>
+      {% else %}
+         {% autoescape off %}
+         {{ plot_div }}
+         {% endautoescape %}
+      {% endif %}
+
+      <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <input type="file" class="form-control-file" id="testFile" name="testFile">
+
+      <button type="submit">Plot the data!</button>
+
+      </form>
+   </div>
+
+   <div class="readme-container">
+      <h3>Readme!</h3>
+      <p class="info">This program reads csv files and plots the points in an X-Y coordinate system. The points are colored based on the data in the third column with the low values as red and high values as green.</p>
+      <p>File requirements:</p>
+      <ul>
+         <li>CSV format</li>
+         <li>3 columns of data or 3 data points per row</li>
+         <li>No headers</li>
+         <li>Must be less than 5 MB</li>
+      </ul>
+   </div>
+
+</body>
+</html>

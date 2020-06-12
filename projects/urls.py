@@ -26,4 +26,13 @@ urlpatterns = [
     path("breakout/", views.breakout, name="breakout"),
     path("relaxer/", views.relaxer, name="relaxer"),
     path("new_year_countdown/", views.new_year_countdown, name="new_year_countdown"),
+    path("speech_reader/", views.speech_reader, name="speech_reader"),
+    path("car_driving_game/", views.car_driving_game, name="car_driving_game"),
+    path("expense_tracker/", views.expense_tracker, name="expense_tracker"),
+    path("music_player/", views.music_player, name="music_player"),
+    path("typing_game/", views.typing_game, name="typing_game"),
+    path("meal_finder/", views.meal_finder, name="meal_finder"),
+    path("hi_lo/", views.hi_lo, name="hi_lo"),
+    path("floppy_bird/", views.floppy_bird, name="floppy_bird"),
+    path("xy_plotter/", views.xy_plotter, name="xy_plotter"),
 ]

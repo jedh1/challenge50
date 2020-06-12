@@ -7,51 +7,51 @@ const closeBtn = document.getElementById('close');
 
 const data = [
   {
-    image: './img/drink.jpg',
+    image: "/static/img/speech_reader_img/drink.jpg",
     text: "I'm Thirsty"
   },
   {
-    image: './img/food.jpg',
+    image: '/static/img/speech_reader_img/food.jpg',
     text: "I'm Hungry"
   },
   {
-    image: './img/tired.jpg',
+    image: '/static/img/speech_reader_img/tired.jpg',
     text: "I'm Tired"
   },
   {
-    image: './img/hurt.jpg',
+    image: '/static/img/speech_reader_img/hurt.jpg',
     text: "I'm Hurt"
   },
   {
-    image: './img/happy.jpg',
+    image: '/static/img/speech_reader_img/happy.jpg',
     text: "I'm Happy"
   },
   {
-    image: './img/angry.jpg',
+    image: '/static/img/speech_reader_img/angry.jpg',
     text: "I'm Angry"
   },
   {
-    image: './img/sad.jpg',
+    image: '/static/img/speech_reader_img/sad.jpg',
     text: "I'm Sad"
   },
   {
-    image: './img/scared.jpg',
+    image: '/static/img/speech_reader_img/scared.jpg',
     text: "I'm Scared"
   },
   {
-    image: './img/outside.jpg',
+    image: '/static/img/speech_reader_img/outside.jpg',
     text: 'I Want To Go Outside'
   },
   {
-    image: './img/home.jpg',
+    image: '/static/img/speech_reader_img/home.jpg',
     text: 'I Want To Go Home'
   },
   {
-    image: './img/school.jpg',
+    image: '/static/img/speech_reader_img/school.jpg',
     text: 'I Want To Go To School'
   },
   {
-    image: './img/grandma.jpg',
+    image: '/static/img/speech_reader_img/grandma.jpg',
     text: 'I Want To Go To Grandmas'
   }
 ];
