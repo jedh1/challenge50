@@ -1,0 +1,18 @@
+<html>
+<head>
+   <title>High-Low Card Guessing Game</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'css/hi_lo.css' %}" />
+</head>
+<body>
+   <div>Streak: <div class="score">0</div></div>
+   <div class="message">Click to Start</div>
+   <div class="gameplay"></div>
+   <button type="button">Start</button>
+   <button type="button" class="hideButton">Higher</button>
+   <button type="button" class="hideButton">Lower</button>
+   </div>
+   <script src="{% static 'js/hi_lo.js' %}"></script>
+</body>
+
+</html>

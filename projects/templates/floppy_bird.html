@@ -1,0 +1,17 @@
+<html>
+<head>
+   <title>Floppy Bird</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'css/floppy_bird.css' %}" />
+</head>
+<body>
+<div class="score"></div>
+<div class="game">
+    <div class="gameArea"></div>
+    <div class="startScreen">Use the arrow keys or the space bar to move the bird. Avoid the obstacles! Click here to start.</div>
+    <span class="gameMessage hide"></span>
+</div>
+   <script src="{% static 'js/floppy_bird.js' %}"></script>
+</body>
+
+</html>

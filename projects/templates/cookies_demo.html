@@ -1,0 +1,20 @@
+<html>
+<head>
+   {% load static %}
+   <title>Cookies Javascript Demo</title>
+   <link rel="stylesheet" href="{% static 'css/cookies_demo.css' %}" />
+</head>
+<body>
+   <input type="text" name="cookieName" value="testName">
+   <input type="text" name="cookieValue" value="testValue">
+   <input type="date" name="cookieExpire">
+   <button class="btn1">Set Cookie</button>
+   <button class="btn2">Get Cookie</button>
+   <button class="btn3">Delete Cookie</button>
+   <button class="btn4">Show All Cookies</button>
+   <div class="output"></div>
+
+   <script src="{% static 'js/cookies_demo.js' %}"></script>
+</body>
+
+</html>

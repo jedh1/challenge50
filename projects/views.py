@@ -60,3 +60,6 @@ def landing_page(request):
 
 def hangman(request):
     return render(request, 'hangman.html')
+
+def calculator(request):
+    return render(request, 'calculator.html')
