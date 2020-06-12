@@ -147,6 +147,9 @@ def new_year_countdown(request):
 def speech_reader(request):
     return render(request, 'speech_reader.html')
 
+def speak_number(request):
+    return render(request, 'speak_number.html')
+
 def car_driving_game(request):
     return render(request, 'car_driving_game.html')
 
