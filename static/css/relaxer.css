@@ -5,7 +5,6 @@
 }
 
 body {
-   background: #224941 url("{% static 'img/relaxerbg.png' %}") no-repeat center center/
    cover;
    color: #fff;
    font-family: 'Montserrat', sans-serif;

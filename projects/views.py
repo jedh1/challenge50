@@ -42,12 +42,11 @@ def sample(request):
     return render(request, 'sample.html')
 #
 # Projects for 30projects30days
-# Create your views here.
 # https://plotly.com/python/line-and-scatter/
 def xy_plotter(request):
     intro = True
     if request.method == 'GET':
-        df = { "X":[-4, -3, -2, -1, 0], "Y": [-4, -3, -2, -1, 0], "Z": [1, 2, 4, -3]}
+        df = { "X":[-4, -3, -2, -1, 0,1,2,3,4,2,-2,-2,2,3,-3,3], "Y": [-4,5,3,-4,2,3,-3,4,-1,2,2,-2,-2,3,3,-3], "Z": [-3,2,5,3,-2,-4,5,2,1,2,4,3,0,-1,-2,-3]}
         plot_div = plot([Scatter(
                         x = df['X'],
                         y = df['Y'],
