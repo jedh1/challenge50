@@ -10,8 +10,12 @@ from plotly.graph_objs import Scatter
 import pandas as pd
 
 # Create your views here.
+def index(request):
+    return render(request, 'index.html')
+
 def project_index(request):
     projects = Project.objects.all()
+    projects = projects.order_by('pk').reverse()
     context = {
         'projects': projects
     }

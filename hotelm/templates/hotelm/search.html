@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Marriott Search</title>
+   {% load static %}
+
+   <!-- Bootstrap CSS file -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+   <link rel="stylesheet" href="{% static 'css/search.css' %}">
+</head>
+
+<body>
+<div class="bg-img">
+
+<div class="navigation">
+    <ul class="navigation-ul">
+        <li><a href="{% url 'index' %}">Home</a></li>
+        <li><a href="{% url 'project_index' %}">Projects</a></li>
+        <li><a href="{% url 'blog_index' %}">Blog</a></li>
+        <li><a href="{% url 'search' %}">Marriott Search</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+    </ul>
+</div>
+
+<div class="text-center title">Marriott Search</div>
+
+<div class="message-container">
+   {% if message %}
+   <h2 class="message">{{ message }}</h2>
+   {% endif %}
+</div>
+
+<div class="auth">
+   {% if user.is_authenticated %}
+      <div class="auth-container">
+         You are currently logged in as: {{ user.username }}
+      </div>
+      <div class="auth-container">
+         <form action="/hotelm/history/">
+            <input type="submit" value="Search History" />
+         </form>
+         <form action="/hotelm/logout/">
+            <input type="submit" value="Log Out" />
+         </form>
+      </div>
+   {% else %}
+      <div class="login-container">
+         <form action="/hotelm/login/">
+            <input type="submit" value="Log In" />
+         </form>
+      </div>
+   {% endif %}
+</div>
+
+
+<div class="form-container">
+   <form class="form" id="form" name="form" action="/hotelm/search/" method="post">
+      <h3>New Search</h3>
+      {% csrf_token %}
+      <div class="form-group">
+         <label for="destination">Destination*:</label>
+         <input type="text" class="form-control" placeholder="Enter Destination" name="destination" id="destination" required>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-md-6">
+            <p>Check-in Date MM-DD-YY*:</p>
+            <input type="text" class="form-control" pattern="\d{1,2}-\d{1,2}-\d{2}" placeholder="Check-in MM-DD-YY" name="cin_date" id="cin_date" required/>
+         </div>
+         <div class="form-group col-md-6">
+            <p>Check-out Date MM-DD-YY*:</p>
+            <input type="text" class="form-control" pattern="\d{1,2}-\d{1,2}-\d{2}" placeholder="Check-out MM-DD-YY" name="cout_date" id="cout_date" required/>
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-md-6">
+            <p>Special Rates:</p>
+            <select name="special_rates" class="form-control" id="special_rates">
+               <option value="" selected>None</option>
+               <option value="1">Corporate, Promo, SET#</option>
+               <option value="2">AAA, CAA</option>
+               <option value="3">Senior Discount</option>
+               <option value="4">Government & Military</option>
+            </select>
+         </div>
+         <div class="form-group col-md-6">
+            <p>Discount Code:</p>
+            <input type="text" class="form-control" placeholder="Enter Code" name="special_rates_code" />
+         </div>
+      </div>
+      <div class="form-row">
+         <div class="form-group col-md-6">
+            <p>Email*:</p>
+            <input type="email" class="form-control" placeholder="Email" name="email" id="email" />
+         </div>
+         <div class="form-group col-md-6">
+            <p>Email Frequency:</p>
+            <input type="text" class="form-control" placeholder="Max: 30" name="email_freq" />
+         </div>
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+   </form>
+</div>
+</div>
+
+<!-- JS files: jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

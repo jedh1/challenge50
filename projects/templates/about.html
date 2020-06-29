@@ -2,15 +2,337 @@
 
 {% load static %}
 
+{% block head %}
+<style>
+   body {
+      box-sizing: border-box;
+      background-color: #e5f4fe;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      font-family: Arial, sans-serif;
+   }
+   h1 {
+      padding: 10px;
+      text-align: center;
+   }
+   .button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+   }
+   .button-container button, .project-list-btn {
+      margin: 0 3px 0 3px;
+      padding: 3px;
+      cursor: pointer;
+      color: #fff;
+      background-color: #3498db;
+      border: 1px solid #3498db;
+      border-radius: 4px;
+      font-size: 15px;
+   }
+   .about-container {
+      width: 800px;
+      margin: 0 10px 10px 10px;
+   }
+   .project-list-btn {
+      margin-bottom: 10px;
+   }
+   .project-list-container {
+      display: none;
+   }
+   .project-list, .project-list th, .project-list td {
+      border-collapse: collapse;
+      border: 1px solid #ddd;
+      padding: 3px;
+   }
+   .info-card {
+      display: block;
+      border: 1px solid lightgrey;
+      margin: 5px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+   }
+   p, ul, table {
+      margin: 10px;
+   }
+   h3 {
+      text-align: center;
+      margin: 5px;
+   }
+   .marriott {
+      display: none;
+   }
+   .challengeprojects {
+      display: none;
+   }
+</style>
+{% endblock %}
+
 {% block page_content %}
 <h1>About</h1>
 
-<br>
-<h3>#30projects30days Rules</h3>
-<ol>
-    <li>Create a project per day.</li>
-    <li>A project could be an app, a component, a website, a game, a library, etc.</li>
-    <li>Your choice of langauge and framework.</li>
-    <li>The project must be done by 2:59AM</li>
-    <li>If a day is missed, the project must be made up within the next 7 days. (I added this one. I have a day job which may need overtime.)</li>
+<div class="button-container">
+   <button class="about-jed-btn" id="about-jed-btn">About Jed</button>
+   <button class="marriott-btn" id="marriott-btn">Marriott Search</button>
+   <button class="challengeprojects-btn" id="challengeprojects-btn">#30Days30Projects</button>
+   <button class="resume" id="resume">Resume</button>
+</div>
+
+<div class="about-container">
+
+<div class="about-jed info-card" id="about-jed">
+   <h3>About Jed</h3>
+   <p>A few days after Thanksgiving 2019, I had a discussion with my good friend over a round of bowling. We caught up on our lives and debated over emerging software technologies to create the next innovative business. Afterwards, he asked me, "How come you don't work in software?" That was a great question! I could not answer it. Software is the past, present, and future. Most of my friends are also software engineers, and they mention the intricate problems they must unravel. I enjoy solving problems and optimizing solutions, so why not!? Thus, I started my journey to learn software. I have been learning Python and Javscript since December 2019.</p>
+
+   <p>I have a BS Chemical Engineering degree from UC Berkeley and MS Engineering and MBA degrees from San Jose State University.
+   From the hardware industry, I have extensive experience in managing projects and engineers, overseeing operations, developing products, optimizing processes, defining product specifications, performing QA and reliability tests, and interfacing with international contract manufacturers.</p>
+</div>
+<div class="marriott info-card" id="marriott">
+   <h3>Marriott Search Project</h3>
+   <p>Marriott Search was the second large project I created. It uses mainly Python and CSS.
+   </p>
+   <p>Main features:</p>
+   <ul>
+      <li>Form input is sent to Marriott.com with a separate thread. </li>
+      <li>The results are scraped using the Selenium framework and sent to a provided email.</li>
+      <li>Daily results can be requested by inputting a number in the Email Frequency box. The job is scheduled with the APScheduler Python library with Django.</li>
+      <li>Search results are stored in a Postgres database. The previous searches can be retrieved and deleted.</li>
+   </ul>
+</div>
+<div class="challengeprojects info-card" id="challengeprojects">
+   <h3>#30days30projects</h3>
+   <p>#30days30projects is a challenge to complete 30 projects in 30 days. I participated because I thought it was a fun approach to improve my front-end skills including HTML, CSS, and Javascript. The process was fun. Ultimately, I was successful in completing 30 projects in 30 days.
+
+   <br>
+   <h3>#30days30projects Rules</h3>
+   <ol>
+       <li>Create a project per day.</li>
+       <li>A project could be an app, a component, a website, a game, a library, etc.</li>
+       <li>Your choice of langauge and framework.</li>
+       <li>The project is considered complete for the day by 11:59PM.</li>
+       <li>Missed projects must be made up within 7 days.</li>
+   <br>
+
+   <button class="project-list-btn" id="project-list-btn">Projects completed for #30days30projects</button>
+   <div class="project-list-container" id="project-list-container">
+      <table class="project-list">
+         <tr>
+            <th>Project</th>
+            <th>Completion Date</th>
+            <th>Comments</th>
+         </tr>
+         <tr>
+         <tr>
+            <td><a href="/project_index/">Website Framework</a></td>
+            <td>5/13/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/clockview/">Simple Digital Clock + Django Integration</a></td>
+            <td>5/14/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/validator/">Form Validator</a></td>
+            <td>5/15/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/movie/">Movie Ticket Seat Selector GUI</a></td>
+            <td>5/16/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/video/">Custom Video Player</a></td>
+            <td>5/17/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/exchange_rate/">Currency Exchange Calculator</a></td>
+            <td>5/18/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/dom_array/">DOM Array Methods Demo</a></td>
+            <td>5/19/2020</td>
+            <td></td>
+         </tr>
+
+         <tr>
+            <td><a href="/landing_page/">Landing Page Demo</a></td>
+            <td>5/20/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/hangman/">Hangman Game</a></td>
+            <td>5/21/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/calculator/">4-Function Calculator</a></td>
+            <td>5/22/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/scrambled_words/">Scrambled Words Game</a></td>
+            <td>5/23/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/cookies_demo/">Javascript Cookies Demo</a></td>
+            <td>5/24/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/create_csv/">Create CSV File from Google Sheet</a></td>
+            <td>5/25/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/drag_drop/">Drag & Drop Demo</a></td>
+            <td>5/26/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/post_scrolling/">Infinite Post Scrolling Demo</a></td>
+            <td>5/27/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/flash_cards/">Flash Cards</a></td>
+            <td>5/28/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/lyrics_search/">Lyrics Search App</a></td>
+            <td>5/29/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/breakout/">Breakout Game</a></td>
+            <td>5/30/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/relaxer/">Relaxer App</a></td>
+            <td>5/31/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/new_year_countdown/">New Year Countdown</a></td>
+            <td>6/1/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/speech_reader/">Speech Reader</a></td>
+            <td>6/2/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/speak_number/">Speak Number Guessing Game</a></td>
+            <td>6/3/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/car_driving_game/">Car Driving Game</a></td>
+            <td>6/4/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/expense_tracker/">Expense Tracker</a></td>
+            <td>6/5/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/music_player/">Custom Music Player</a></td>
+            <td>6/6/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/typing_game/">Speed Typing Game</a></td>
+            <td>6/7/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/typing_game/">Speed Typing Game</a></td>
+            <td>6/7/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/typing_game/">Speed Typing Game</a></td>
+            <td>6/7/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/meal_finder/">Meal Finder</a></td>
+            <td>6/8/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/hi_lo/">High-Low Game</a></td>
+            <td>6/9/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/floppy_bird/">Floppy Bird Game</a></td>
+            <td>6/10/2020</td>
+            <td></td>
+         </tr>
+         <tr>
+            <td><a href="/xy_plotter/">XY Plotter</a></td>
+            <td>6/11/2020</td>
+            <td></td>
+         </tr>
+      </table>
+   </div>
+</div>
+</div>
+
+<script>
+const aboutJedBtn = document.getElementById('about-jed-btn');
+const aboutJed = document.getElementById('about-jed');
+const marriottBtn = document.getElementById('marriott-btn');
+const marriott = document.getElementById('marriott');
+const challengeprojectsBtn = document.getElementById('challengeprojects-btn');
+const challengeprojects = document.getElementById('challengeprojects');
+const projectListBtn = document.getElementById('project-list-btn');
+const projectList = document.getElementById('project-list-container');
+
+aboutJedBtn.addEventListener('click', () => {
+   if (aboutJed.style.display === "none") {
+      aboutJed.style.display = 'block';
+   } else {
+      aboutJed.style.display = 'none';
+   }
+});
+
+marriottBtn.addEventListener('click', () => {
+   if (marriott.style.display === "block") {
+      marriott.style.display = 'none';
+   } else {
+      marriott.style.display = 'block';
+   }
+});
+
+challengeprojectsBtn.addEventListener('click', () => {
+   if (challengeprojects.style.display === "block") {
+      challengeprojects.style.display = 'none';
+   } else {
+      challengeprojects.style.display = 'block';
+   }
+});
+
+projectListBtn.addEventListener('click', () => {
+   if (projectList.style.display === "block") {
+      projectList.style.display = 'none';
+   } else {
+      projectList.style.display = 'block';
+   }
+});
+</script>
+
 {% endblock %}

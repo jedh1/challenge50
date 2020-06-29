@@ -63,14 +63,18 @@ ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_apscheduler',
+    'background_task',
     'projects',
     'blog',
+    'hotelm',
 ]
 
 MIDDLEWARE = [
@@ -150,6 +154,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 #
 # Extra places for collectstatic to find static files for Heroku
 # STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
+
+# background task settings
+MAX_ATTEMPTS = 1
+BACKGROUND_TASK_RUN_ASYNC = True
+
+# apscheduler settings
+# This scheduler config will:
+# - Store jobs in the project database
+# - Execute jobs in threads inside the application process
+SCHEDULER_CONFIG = {
+    "apscheduler.jobstores.default": {
+        "class": "django_apscheduler.jobstores:DjangoJobStore"
+    },
+    'apscheduler.executors.processpool': {
+        "type": "threadpool"
+    },
+}
+SCHEDULER_AUTOSTART = True
+APSCHEDULER_DATETIME_FORMAT =  "N j, Y, f:s a"  # Default
 
 ADMINS = [('jed', 'jedhcl@gmail.com')]
 

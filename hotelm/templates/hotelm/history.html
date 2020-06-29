@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Marriott Search Results - History</title>
+   {% load static %}
+
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<style>
+
+body {
+   text-align: center;
+}
+table.sortable thead {
+    background-color:#959595;
+    color: black;
+    font-weight: bold;
+    cursor: default;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 3px;
+}
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+h1 {
+   padding: 10px 0;
+   text-align: center;
+}
+</style>
+</head>
+
+<body>
+   <div class="bg-img">
+
+   <div class="navigation">
+       <ul class="navigation-ul">
+           <li><a href="{% url 'index' %}">Home</a></li>
+           <li><a href="{% url 'project_index' %}">Projects</a></li>
+           <li><a href="{% url 'blog_index' %}">Blog</a></li>
+           <li><a href="{% url 'search' %}">Marriott Search</a></li>
+           <li><a href="{% url 'about' %}">About</a></li>
+       </ul>
+   </div>
+<h1 class="title">Marriott Search Results History</h1>
+Click on the table headers to sort.
+
+<table class="sortable">
+{% if items %}
+<tbody>
+    <thead>
+        <tr><th>Destination</th><th>Check-In Date</th><th>Check-Out Date</th><th>Special Rate</th><th>Recurrences left</th></tr>
+    </thead>
+        {% for item in items %}
+        <tr>
+            <td>{{ item.destination }}</td>
+            <td>{{ item.check_in }}</td>
+            <td>{{ item.check_out }}</td>
+            <td>{{ item.special_rates }}</td>
+            <td>{{ item.recurrence }}</td>
+            <td>
+                <form action="/hotelm/delete_search/" method="post">
+                   {% csrf_token %}
+				    <input type="hidden" name="search_id" value="{{ item.id }}" />
+			       <input type="submit" value="Delete search">
+			   </form>
+            </td>
+        </tr>
+        {% endfor %}
+</tbody>
+    {% else %}
+        <p><h3>No previous searches.</h3>
+{% endif %}
+</table>
+
+</div>
+
+</body>
+</html>

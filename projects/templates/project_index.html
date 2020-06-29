@@ -2,21 +2,120 @@
 
 {% load static %}
 
+{% block head %}
+   <style>
+      * {
+         box-sizing: border-box;
+      }
+      body {
+         background-color: #e5f4fe;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         margin: 0;
+         font-family: Arial, sans-serif;
+      }
+      .header {
+         padding: 10px 0 0 0;
+         text-align: center;
+      }
+
+      .projects-container {
+         margin: auto;
+         max-width: 800px;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+      }
+
+      .projects {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         grid-gap: 10px;
+         margin-top: 10px;
+      }
+
+      .project {
+         cursor: pointer;
+         position: relative;
+         width: 200px;
+         text-align: center;
+         border: 1px solid lightgrey;
+         border-radius: 10px;
+         overflow: hidden;
+         background-color: #fff;
+      }
+
+      .project img {
+         width: 100%;
+         border: 4px #fff solid;
+         border-top-right-radius: 10px;
+         border-top-left-radius: 10px;
+         padding: 1px !important;
+      }
+
+      .project-description {
+         margin: 3px 0 5px 0 !important;
+      }
+
+      a:link {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:visited {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:hover {
+        text-decoration: none;
+        color: black;
+      }
+
+      a:active {
+        text-decoration: none;
+        color: black;
+      }
+
+      @media (max-width: 820px) {
+         .projects {
+            grid-template-columns: repeat(3, 1fr);
+         }
+      }
+
+      @media (max-width: 600px) {
+         .projects {
+            grid-template-columns: repeat(2, 1fr);
+         }
+      }
+
+   </style>
+   <title>Projects</title>
+{% endblock %}
+
 {% block page_content %}
+<div class="header">
 <h1>Projects</h1>
-<div class="row">
+</div>
 
-{% for project in projects %}
-    <div class="col-md-4">
-        <div class="card mb-2">
-            <a href="{% url project.link %}" class="btn btn-primary"><img class="card-img-top" src="{% static project.image %}"></a>
-            <div class="card-body">
-                <h5 class="card-title">{{ project.title }}</h5>
-                <p class="card-text">{{ project.description }}</p>
+<div class="projects-container">
+   <div class="projects">
+
+      {% for project in projects %}
+         <div class="project">
+            <a href="{% url project.link %}" class="project-btn"><img src="{% static project.image %}">
+            <div class="project-info">
+               <h3 class="project-title">{{ project.title }}</h3>
+               <p class="project-description">{{ project.description }}</p>
             </div>
-        </div>
-    </div>
-{% endfor %}
+            </a>
+         </div>
+      {% endfor %}
 
+   </div>
 </div>
 {% endblock %}

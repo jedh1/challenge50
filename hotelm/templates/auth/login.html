@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Login</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+<div class="bg-img">
+
+<div class="navigation">
+    <ul class="navigation-ul">
+        <li><a class="nav-link" href="{% url 'index' %}">Home</a></li>
+        <li><a class="nav-link" href="{% url 'project_index' %}">Projects</a></li>
+        <li><a class="nav-link" href="{% url 'blog_index' %}">Blog</a></li>
+        <li><a class="nav-link" href="{% url 'search' %}">Marriott Search</a></li>
+        <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+    </ul>
+</div>
+<h1>Marriott Search Log-in</h1>
+
+{% if message %}
+    <h3>{{ message }}</h3>
+{% endif %}
+
+<div class="form-container">
+     <form class="form" name="form" action="/hotelm/login/" method="post">
+     {% csrf_token %}
+     <div class="form-field">
+        <label for="username">Username:</label>
+        <input type="text" placeholder="Username" name="username" id="username" required/>
+     </div>
+     <div class="form-field">
+       <label for="password">Password:</label>
+       <input type="password" placeholder="Password" name="password" id="password" required/>
+     </div>
+     <button type="submit" class="btn btn-primary">Log In</button>
+ </form>
+</div>
+
+<div class="register-container">
+   Register a new account here: <a href="{% url 'register' %}" target="blank"><strong>Register</strong></a>
+</div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Marriott Search</title>
+   {% load static %}
+   <link rel="stylesheet" href="{% static 'css/search.css' %}">
+</head>
+
+<body>
+<div class="bg-img">
+
+<div class="navigation">
+    <ul class="navigation-ul">
+        <li><a class="nav-link" href="{% url 'project_index' %}">Home</a></li>
+        <li><a class="nav-link" href="{% url 'project_index' %}">Projects</a></li>
+        <li><a class="nav-link" href="{% url 'blog_index' %}">Blog</a></li>
+        <li><a class="nav-link" href="{% url 'search' %}">Marriott Search</a></li>
+        <li><a class="nav-link" href="{% url 'about' %}">About</a></li>
+    </ul>
+</div>
+
+<h1 class="title">Marriott Search</h1>
+
+<div class="message-container">
+   {% if message %}
+   <h2 class="message">{{ message }}</h2>
+   {% endif %}
+</div>
+
+<div class="auth">
+   {% if user.is_authenticated %}
+      You are currently logged in as: {{ user.username }}
+      <br>
+      <div class="logout-container">
+         <form action="/hotelm/history/">
+            <input type="submit" value="Search History" />
+         </form>
+         <form action="/hotelm/logout/">
+            <input type="submit" value="Log Out" />
+         </form>
+      </div>
+   {% else %}
+      <div class="login-container">
+         <form action="/hotelm/login/">
+            <input type="submit" value="Log In" />
+         </form>
+      </div>
+   {% endif %}
+</div>
+
+
+<div class="form-container">
+   <form class="form" id="form" name="form" action="/hotelm/search/" method="post">
+      <h3>New Search</h3>
+      {% csrf_token %}
+      <div class="form-field">
+         <label for="destination">Destination:*</label>
+         <input type="text" placeholder="Enter Destination" name="destination" id="destination">
+         <small>Error message</small>
+      </div>
+      <div class="form-field">
+         <p>Check-in Date MM-DD-YY:*</p>
+         <input type="text" pattern="\d{1,2}-\d{1,2}-\d{2}" placeholder="Check-in" name="cin_date" id="cin_date"/>
+      </div>
+      <div class="form-field">
+         <p>Check-out Date MM-DD-YY:*</p>
+         <input type="text" pattern="\d{1,2}-\d{1,2}-\d{2}" placeholder="Check-out" name="cout_date" id="cout_date"/>
+      </div>
+      <div class="form-field">
+         <p>Special Rates:</p>
+         <select name="special_rates" id="special_rates">
+            <option value="" selected>None</option>
+            <option value="1">Corporate, Promo, SET#</option>
+            <option value="2">AAA, CAA</option>
+            <option value="3">Senior Discount</option>
+            <option value="4">Government & Military</option>
+         </select>
+      </div>
+      <div class="form-field special-rates-code">
+         <p>Corporate, Promo, SET# Code:</p>
+         <input type="text" placeholder="Special Rates Code" name="special_rates_code" />
+      </div>
+      <div class="form-field">
+         <p>Email:*</p>
+         <input type="email" placeholder="Email" name="email" id="email" />
+      </div>
+      <div class="form-field">
+         <p>Email Frequency:</p>
+         <input type="text" placeholder="Email frequency" name="email_freq" />
+      </div>
+      <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+   </form>
+</div>
+
+<!--
+<div class="features-container">
+   <p>Features of this application:</p>
+   <ul>
+       <li>Search Marriott for hotels, and results will be sent to your email.</li>
+       <li>Search results can be sent to your email daily up to 30 days to track prices and find the lowest prices.</li>
+       <li>Create a username and password to store your search history.</li>
+       <li>Delete search history.</li>
+   </ul>
+</div> -->
+
+</div>
+
+<script src="{% static 'js/search.js' %}"></script>
+</body>
+</html>

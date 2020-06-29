@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block head %}
+<title>My name is Jed</title>
+<style>
+   body {
+      box-sizing: border-box;
+      background-color: #e5f4fe;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+      font-family: Arial, sans-serif;
+   }
+   .main-container {
+      background-color: #fff;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 10px 0 10px;
+   }
+   .jed {
+      max-width: 300px;
+      margin: 10px;
+   }
+   .info-container {
+      max-width: 300px;
+      margin: 10px;
+   }
+   .info-body {
+      margin: 5px 0 20px 0;
+   }
+   .resume a {
+      position: relative;
+      font-size: 20px;
+      color: blue;
+      background: #e5f4fe;
+      text-align: center;
+      padding: 5px;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid lightgrey;
+   }
+
+   .resume a:hover {
+      color: lightblue;
+   }
+
+</style>
+{% endblock %}
+
+{% block page_content %}
+
+<div class="main-container">
+   <div class="image-container">
+      <img class="jed" src="/static/img/jed_full.jpg">
+   </div>
+   <div class="info-container">
+      <h1>My name is Jed.</h1>
+      <p class="info-body">Enjoy my page!</p>
+   </div>
+
+</div>
+
+{% endblock %}
