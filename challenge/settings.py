@@ -153,7 +153,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #
 # Extra places for collectstatic to find static files for Heroku
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
+# STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
 
 # background task settings
 MAX_ATTEMPTS = 1
