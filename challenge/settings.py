@@ -148,12 +148,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #location where django collect all static files
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #
 # Extra places for collectstatic to find static files for Heroku
-# STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
 
 # background task settings
 MAX_ATTEMPTS = 1
