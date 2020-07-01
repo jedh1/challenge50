@@ -54,10 +54,14 @@ body, html {
    height: 100%;
 }
 
+.title {
+   margin-top: 50px !important;
+}
+
 .message-container {
    display: flex;
    flex-direction: row;
-   margin: 5px auto 5px auto;
+   margin: 5px;
    justify-content: center;
    align-items: center;
 }

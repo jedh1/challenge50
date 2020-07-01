@@ -146,15 +146,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)--------------------------
 # https://docs.djangoproject.com/en/3.0/howto/static-files/-------
 
+# URL for static files: www.test.com/static/test.jpg
 STATIC_URL = '/static/'
-#location where django collect all static files
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+# location where django collects all static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 #
-# Extra places for collectstatic to find static files for Heroku
-STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static')]
+# Determines where static files are pulled from. Extra places for collectstatic to find static files for Heroku
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'projects/static/')]
 
 # background task settings
 MAX_ATTEMPTS = 1

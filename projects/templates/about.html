@@ -3,6 +3,7 @@
 {% load static %}
 
 {% block head %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
    body {
       box-sizing: border-box;
@@ -69,7 +70,27 @@
    .challengeprojects {
       display: none;
    }
+
+   @media (max-width: 820px) {
+      .about-container {
+         width: 580px;
+      }
+   }
+
+   @media (max-width: 600px) {
+      .about-container {
+         width: 400px;
+      }
+   }
+   .custom {
+      font-size: 17px;
+      text-align: center;
+      text-decoration: none;
+      color: white;
+      position: relative;
+   }
 </style>
+
 {% endblock %}
 
 {% block page_content %}
@@ -77,9 +98,10 @@
 
 <div class="button-container">
    <button class="about-jed-btn" id="about-jed-btn">About Jed</button>
+   <button class="resume" id="resume">Resume</button>
    <button class="marriott-btn" id="marriott-btn">Marriott Search</button>
    <button class="challengeprojects-btn" id="challengeprojects-btn">#30Days30Projects</button>
-   <button class="resume" id="resume">Resume</button>
+   <button class="mibao" id="mibao">My Dog's <div class="fa fa-instagram custom"></div></button>
 </div>
 
 <div class="about-container">
@@ -301,6 +323,7 @@ const challengeprojectsBtn = document.getElementById('challengeprojects-btn');
 const challengeprojects = document.getElementById('challengeprojects');
 const projectListBtn = document.getElementById('project-list-btn');
 const projectList = document.getElementById('project-list-container');
+const mibao = document.getElementById('mibao');
 
 aboutJedBtn.addEventListener('click', () => {
    if (aboutJed.style.display === "none") {
@@ -333,6 +356,12 @@ projectListBtn.addEventListener('click', () => {
       projectList.style.display = 'block';
    }
 });
+
+mibao.addEventListener('click', () => {
+   window.location = "https://www.instagram.com/mibao_the_corgi/";
+});
+
+
 </script>
 
 {% endblock %}
