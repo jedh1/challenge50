@@ -114,7 +114,7 @@ def fill_form(driver, location, cInDate, cOutDate, special_rates, special_rates_
     driver.find_element_by_css_selector("div.l-hsearch-find button").click()
     print('Clicked search button')
     # wait until next page has loaded before running next function
-    wait = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
+    # wait = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
     # Sort by price
     # driver.find_element_by_xpath("//span[contains(text(),'Distance')]").click()
     # print('Clicked sort menu')
@@ -123,6 +123,7 @@ def fill_form(driver, location, cInDate, cOutDate, special_rates, special_rates_
     # print('Clicked sort by price')
     # time.sleep(10)
     #wait = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
+    time.sleep(10)
     print("fill_form Success")
 
 def scrape_results(driver):
