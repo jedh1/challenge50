@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from projects.models import Project
 
 from django.core.mail import EmailMultiAlternatives
@@ -8,6 +8,17 @@ from django.contrib import messages
 from plotly.offline import plot
 from plotly.graph_objs import Scatter
 import pandas as pd
+# For backtesting
+from pandas_datareader import data as pdr
+from django.contrib import messages
+from django.http import HttpResponse
+from bokeh.plotting import figure, output_file, show, ColumnDataSource
+import bokeh.layouts
+from bokeh.embed import components
+from bokeh.models import HoverTool
+from datetime import date
+from .forms import sma_search
+from .btsingle import btsingle
 
 # Create your views here.
 def index(request):
@@ -47,6 +58,7 @@ def sample(request):
 #
 # Projects for 30projects30days
 # https://plotly.com/python/line-and-scatter/
+# XY Plotter
 def xy_plotter(request):
     intro = True
     if request.method == 'GET':
@@ -90,6 +102,72 @@ def xy_plotter(request):
             messages.warning(request, f'No file to process! Please upload a file to process.')
     return render(request, "xy_plotter.html", context={'plot_div': plot_div})
 
+# Backtesting SMA
+def btindex(request):
+    # If form is filled:
+    if request.method == 'POST':
+        form = sma_search(request.POST)
+        if form.is_valid():
+            # Create Search object
+            stock_in = form.cleaned_data.get('ticker')
+            start_date_in = form.cleaned_data.get('start_date')
+            end_date_in = form.cleaned_data.get('end_date')
+            pfast = form.cleaned_data.get('sma_fast')
+            pslow = form.cleaned_data.get('sma_slow')
+            error_count = 0
+
+            #check form is valid:
+            if start_date_in >= end_date_in:
+                messages.error(request, 'Form error: End date must be later than start date,')
+                error_count += 1
+
+            if pfast >= pslow:
+                messages.error(request, 'Form error: SMA, fast must be less than SMA, slow.')
+                error_count += 1
+
+            if error_count > 0:
+                error_count = 0
+                return redirect('btindex')
+
+            try:
+                script, div, sr = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+            except:
+                messages.error(request, 'Form error')
+                return redirect('btindex')
+
+            return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sr, 'ticker': stock_in.upper(), 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+    # initial form screen
+    else:
+        form = sma_search()
+    return render(request, 'btindex.html', {'form': form})
+
+    #Store components
+    script, div = components(plot)
+    return render(request,'btindex.html', {'script':script, 'div':div} )
+
+def bt_ex1(request):
+    #input variables
+    stock_in = 'TSLA'
+    start_date_in = '2016-01-01'
+    end_date_in = '2017-12-25'
+    pfast = 7
+    pslow = 66
+    #run strategy
+    script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+
+def bt_ex2(request):
+    #input variables
+    stock_in = 'SPY'
+    start_date_in = '2016-01-01'
+    end_date_in = '2019-12-25'
+    pfast = 50
+    pslow = 200
+    #run strategy
+    script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+
+# Other projects (JS based)
 def clockview(request):
     return render(request, 'clockview.html')
 

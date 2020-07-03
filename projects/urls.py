@@ -37,4 +37,8 @@ urlpatterns = [
     path("hi_lo/", views.hi_lo, name="hi_lo"),
     path("floppy_bird/", views.floppy_bird, name="floppy_bird"),
     path("xy_plotter/", views.xy_plotter, name="xy_plotter"),
+    #backtesting paths
+    path("btindex/", views.btindex, name="btindex"),
+    path("bt_ex1/", views.bt_ex1, name="bt_ex1"),
+    path("bt_ex2/", views.bt_ex2, name="bt_ex2"),
 ]
