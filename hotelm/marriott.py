@@ -58,7 +58,7 @@ def prepare_driver(url):
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
     driver.get(url)
 
-    wait = WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.NAME, 'destinationAddress.destination')))
+    wait = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.NAME, 'destinationAddress.destination')))
     return driver
 
 def fill_form(driver, location, cInDate, cOutDate, special_rates, special_rates_code):
@@ -115,7 +115,8 @@ def fill_form(driver, location, cInDate, cOutDate, special_rates, special_rates_
     driver.find_element_by_css_selector("div.l-hsearch-find button").click()
     print('Clicked search button')
     # wait until next page has loaded before running next function
-    wait = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
+    # wait = WebDriverWait(driver, 20).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
+    time.sleep(20)
     print('after wait until page load')
     # Sort by price
     driver.find_element_by_xpath("//span[contains(text(),'Distance')]").click()
