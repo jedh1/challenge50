@@ -10,23 +10,29 @@
 body {
    text-align: center;
 }
-table.sortable thead {
-    background-color:#959595;
-    color: black;
-    font-weight: bold;
-    cursor: default;
+.title {
+   margin-top: 50px !important;
+}
+.table-container {
+   display: flex;
+   justify-content: center;
 }
 td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 3px;
+   border: 1px solid #dddddd;
+   text-align: left;
+   padding: 3px;
 }
 tr:nth-child(even) {
   background-color: #dddddd;
 }
-h1 {
-   padding: 10px 0;
-   text-align: center;
+tr:nth-child(odd) {
+  background-color: white;
+}
+table.sortable thead {
+    background-color:#959595 !important;
+    color: black;
+    font-weight: bold;
+    cursor: default;
 }
 </style>
 </head>
@@ -44,8 +50,8 @@ h1 {
        </ul>
    </div>
 <h1 class="title">Marriott Search Results History</h1>
-Click on the table headers to sort.
 
+<div class="table-container">
 <table class="sortable">
 {% if items %}
 <tbody>
@@ -73,6 +79,7 @@ Click on the table headers to sort.
         <p><h3>No previous searches.</h3>
 {% endif %}
 </table>
+</div>
 
 </div>
 

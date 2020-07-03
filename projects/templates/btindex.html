@@ -41,9 +41,11 @@
 
 body, html {
    font-family: Arial, sans-serif;
+   display: flex;
+   flex-direction: column;
    justify-content: center;
+   align-items: center;
    margin: 0;
-   height: 100%;
    background-color: #d9e9f8;
 }
 .title {
@@ -100,9 +102,28 @@ body, html {
    width: 100%;
 }
 
+.info-container {
+   max-width: 800px;
+   display: flex;
+   justify-content: center !important;
+   padding-top: 5px;
+}
+
 .info-card {
    display: none;
+   border: 1px solid lightgrey;
+   margin: 5px;
+   padding: 10px 20px 0 15px;
+   background-color: white;
+   border-radius: 5px;
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+   text-align: left;
 }
+
+.info-card ul {
+   padding-left: 20px;
+}
+
 </style>
 </head>
 
@@ -172,8 +193,21 @@ body, html {
    </form>
 </div>
 
-<div class="info-card" id="info-card">
-   Testtesttest
+<div class="info-container">
+   <div class="info-card" id="info-card">
+      <ul>
+         <li>Backtesting is a popular method to test stock trading strategies. Backtesting applies a trading strategy to previous stock data over a period of time, and the profit is calculated.</li>
+         <li>Simple Moving Average (SMA) is a common technical characteristic investors examine and is the moving average of the stock price over a period of time. SMA crossover is a simple strategy that shows a trend reversal when the SMA fast crosses the SMA slow and vice-versa.</li>
+         <li>In this app, a Sharpe Ratio is output, which is the performance compared to the S&P 500 index. </li>
+      </ul>
+   Python packages used:
+   <ul>
+      <li>Backtrader: Calculates profit for trading strategy</li>
+      <li>Yfinance: Obtains stock data from Yahoo Finance</li>
+      <li>Pandas & Pandas-datareader: Reads data from Yahoo Finance</li>
+      <li>Bokeh: Plotting engine</li>
+   </ul>
+   </div>
 </div>
 
 <!-- JS files: jQuery first, then Popper.js, then Bootstrap JS -->

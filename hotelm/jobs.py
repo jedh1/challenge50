@@ -50,6 +50,7 @@ def search_and_email(searchobj_id):
         print("Search successfully completed")
     except:
         print("Search failed")
+        driver.close()
     # Try to email results
     try:
         if searchobj.recipient:
