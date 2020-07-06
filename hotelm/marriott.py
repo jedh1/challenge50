@@ -139,19 +139,23 @@ def scrape_results(driver):
     # print("Hotel names start")
     for hotel in hotel_names_driver:
         hotel_names.append(hotel.text)
+        print("Hotel name:", hotel)
     hotel_links_driver = driver.find_elements_by_class_name("js-hotel-quickview-link")
     # print("hotel links start")
     for hotel in hotel_links_driver:
         hotel_links.append(hotel.get_attribute('href'))
+        print("Hotel link:", hotel)
     # print("hotel address start")
     hotel_address_driver = driver.find_elements_by_class_name("m-hotel-address")
     for hotel in hotel_address_driver:
         hotel_address.append(hotel.text)
+        print("Hotel address:", hotel)
     # print("hotel price start")
     hotel_price_driver = driver.find_elements_by_xpath("//a[contains(@class,'js-view-rate-btn-link analytics-click t-price-btn t-no-hover-link is-price-link-disable')]//span[contains(@class,'m-display-block')]")
     for hotel in hotel_price_driver:
         hotel_price.append(hotel.text)
-    print("Scrap results print:")
+        print("Hotel price:", hotel)
+    print("Scrape results print:")
     print(hotel_names, hotel_links, hotel_address, hotel_price)
     driver.close()
     return hotel_names, hotel_links, hotel_address, hotel_price
