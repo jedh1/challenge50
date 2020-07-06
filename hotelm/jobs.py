@@ -41,13 +41,12 @@ def search_and_email(searchobj_id):
         time.sleep(1)
         print("scrape results start")
         res = scrape_results(driver)
-        print("append results list")
-        try:
-            for i in range(len(res[0])):
-                res2.append([res[0][i], res[3][i], res[2][i], res[1][i]])
-                # this algorithm has an error if price is unavailable.
-        except:
-            print("Results append issue: some hotels may not have availability on selected dates")
+        print("append results list start")
+        for i in range(len(res[0])):
+            res2.append([res[0][i], res[3][i], res[2][i], res[1][i]])
+            # this algorithm has an error if price is unavailable.
+        print("append results list completed")
+        print("res2:", res2)
         print("Search successfully completed")
     except:
         if driver:

@@ -170,17 +170,3 @@ def email_marriott_results(res, recipient):
     )
     msg.attach_alternative(html_body, "text/html")
     msg.send()
-# def combine_data(names, links, address, price):
-
-'''
-if __name__ == '__main__':
-    try:
-        url = "https://www.marriott.com/search/default.mi"
-        driver = prepare_driver(url)
-        fill_form(driver, 'Las Vegas, NV', '7-10-20', '7-13-20')
-        time.sleep(1)
-        scrape_results(driver)
-        print("main.py successfully completed")
-    except:
-        print("Fail")
-'''
