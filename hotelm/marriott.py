@@ -136,7 +136,7 @@ def scrape_results(driver):
     hotel_price = list()
     dist = list()
     hotel_names_driver = driver.find_elements_by_class_name("l-property-name")
-    print("Hotel names start")
+    print("Hotel names start", hotel_names_driver)
     for hotel in hotel_names_driver:
         hotel_names.append(hotel.text)
         print("Hotel name:", hotel)
