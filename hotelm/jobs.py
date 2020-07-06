@@ -41,6 +41,7 @@ def search_and_email(searchobj_id):
         time.sleep(1)
         print("scrape results start")
         res = scrape_results(driver)
+        print("res:", res)
         print("append results list start")
         for i in range(len(res[0])):
             res2.append([res[0][i], res[3][i], res[2][i], res[1][i]])

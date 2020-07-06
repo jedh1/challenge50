@@ -151,7 +151,8 @@ def scrape_results(driver):
     hotel_price_driver = driver.find_elements_by_xpath("//a[contains(@class,'js-view-rate-btn-link analytics-click t-price-btn t-no-hover-link is-price-link-disable')]//span[contains(@class,'m-display-block')]")
     for hotel in hotel_price_driver:
         hotel_price.append(hotel.text)
-    # print(hotel_names, hotel_links, hotel_address, hotel_price)
+    print("Scrap results print:")
+    print(hotel_names, hotel_links, hotel_address, hotel_price)
     driver.close()
     return hotel_names, hotel_links, hotel_address, hotel_price
 
