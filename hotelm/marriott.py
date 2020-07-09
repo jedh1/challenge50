@@ -53,9 +53,12 @@ def prepare_driver(url):
     chrome_options.add_argument("--headless")
     chrome_options.add_argument('--window-size=1400,800')
     chrome_options.add_argument('--disable-gpu')
-    chrome_options.add_argument('--disable-extensions')
     chrome_options.add_argument("--no-sandbox")
+    # https://intoli.com/blog/making-chrome-headless-undetectable/
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+    chrome_options.add_argument('user-agent={0}'.format(user_agent))
     driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+    driver.execute_script("return navigator.userAgent")
 
     driver.get(url)
     wait = WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.NAME, 'destinationAddress.destination')))
@@ -114,18 +117,16 @@ def fill_form(driver, location, cInDate, cOutDate, special_rates, special_rates_
     # find search button and click it
     driver.find_element_by_css_selector("div.l-hsearch-find button").click()
     print('Clicked search button')
-    # wait until next page has loaded before running next function
-    # wait = WebDriverWait(driver, 20).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
-    time.sleep(20)
+    wait until next page has loaded before running next function
+    wait = WebDriverWait(driver, 20).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
     print('after wait until page load')
     # Sort by price
-    # driver.find_element_by_xpath("//span[contains(text(),'Distance')]").click()
-    # print('Clicked sort menu')
-    # time.sleep(1)
-    # driver.find_element_by_xpath("//li[contains(text(),'Price')]").click()
-    # print('Clicked sort by price')
-    # time.sleep(10)
-    # wait = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
+    driver.find_element_by_xpath("//span[contains(text(),'Distance')]").click()
+    print('Clicked sort menu')
+    time.sleep(1)
+    driver.find_element_by_xpath("//li[contains(text(),'Price')]").click()
+    print('Clicked sort by price')
+    wait = WebDriverWait(driver, 60).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
     print("fill_form Success")
 
 def scrape_results(driver):
