@@ -12,29 +12,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from challenge.settings import EMAIL_HOST_USER
 
 def driver_test():
-    # print('driver_test start')
-    # options = Options()
-    # options.add_argument('--window-size=1400,800')
-    # options.add_argument('--disable-gpu')
-    # options.add_argument('--disable-extensions')
-    # # options.add_argument('--headless')
-    # driver = webdriver.Chrome(executable_path="C:\misc\CS\Projects\challenge\hotelm\drivers\chromedriver.exe", chrome_options=options)
-    #
-    # # Selenium for herokuapp
-    # # https://www.andressevilla.com/running-chromedriver-with-python-selenium-on-heroku/
-    # # chrome_options = webdriver.ChromeOptions()
-    # # chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    # # chrome_options.add_argument("--headless")
-    # # chrome_options.add_argument('--window-size=1920,1080')
-    # # chrome_options.add_argument('--disable-gpu')
-    # # chrome_options.add_argument("--disable-dev-shm-usage")
-    # # chrome_options.add_argument("--no-sandbox")
-    # # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-    #
-    # driver.get("https://www.marriott.com/search/default.mi")
-    # wait = WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.NAME, 'destinationAddress.destination')))
-    # print('driver success')
-    return driver
+    return
 
 def prepare_driver(url):
     # Chrome options
@@ -117,7 +95,7 @@ def fill_form(driver, location, cInDate, cOutDate, special_rates, special_rates_
     # find search button and click it
     driver.find_element_by_css_selector("div.l-hsearch-find button").click()
     print('Clicked search button')
-    wait until next page has loaded before running next function
+    # wait until next page has loaded before running next function
     wait = WebDriverWait(driver, 20).until(EC.presence_of_all_elements_located((By.CLASS_NAME, 'l-property-name')))
     print('after wait until page load')
     # Sort by price
