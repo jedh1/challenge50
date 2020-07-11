@@ -141,10 +141,6 @@ def btindex(request):
         form = sma_search()
     return render(request, 'btindex.html', {'form': form})
 
-    #Store components
-    script, div = components(plot)
-    return render(request,'btindex.html', {'script':script, 'div':div} )
-
 def bt_ex1(request):
     #input variables
     stock_in = 'TSLA'

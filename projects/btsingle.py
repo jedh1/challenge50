@@ -10,6 +10,7 @@ from bokeh.plotting import figure, output_file, show, ColumnDataSource
 import bokeh.layouts
 from bokeh.embed import components
 from bokeh.models import HoverTool
+from bokeh.resources import CDN
 import pandas as pd
 from datetime import date
 from pandas_datareader import data as pdr
@@ -104,6 +105,6 @@ def btsingle(stock_in, start_date_in, end_date_in, pfast, pslow):
     stock_dates = pd.to_datetime(stock.index)
     stock_close = stock['Close']
     plot_stock = plot.line(x=stock_dates, y=stock_close, line_width=1)
-    script, div = components(plot)
+    script, div = components(plot, CDN)
     print(sharpe_ratio)
     return script, div, sharpe_ratio
