@@ -4,11 +4,8 @@
    <title>Stock Backtesting - Single Moving Average Crossover</title>
    {% load static %}
    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-   <link href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css" rel="stylesheet" type="text/css">
-   <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.css" rel="stylesheet" type="text/css">
    <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
-   <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.js"></script>
-{{ script | safe }}
+   <link href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css" rel="stylesheet">
 <style>
 .navigation {
   width: 100%;
@@ -118,6 +115,7 @@ body, html {
 </div>
 <div class="graph">
 {{ div | safe }}
+{{ script | safe }}
 </div>
 <div class="back-btn">
    <form action="/btindex/">
