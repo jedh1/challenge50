@@ -72,9 +72,10 @@ body, html {
    text-align: center;
 }
 
-.graph {
+.graph-container {
    justify-content: center !important;
    display: flex;
+   height: 400px;
 }
 
 .back-btn {
@@ -113,10 +114,12 @@ body, html {
    Fast moving average: {{ fsma }} ::: Slow moving average: {{ ssma }}<br>
    Sharpe ratio: {{ sr }}<br>
 </div>
-<div class="graph">
+
+<div class="graph-container">
 {{ div | safe }}
 {{ script | safe }}
 </div>
+
 <div class="back-btn">
    <form action="/btindex/">
       <input type="submit" value="Back" />
