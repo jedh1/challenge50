@@ -139,13 +139,13 @@ def scrape_results(driver):
     driver.close()
     return hotel_names, hotel_links, hotel_address, hotel_price
 
-def email_marriott_results(res, recipient):
+def email_marriott_results(res, recipient, destination, check_in, check_out):
     # def takePrice(lst):
     #     return lst[3]
     # res.sort(key=takePrice)
     subject = 'Marriott Search Results - Have a Great Day!'
     txt_message = 'Have a great day!'
-    html_body = render_to_string('hotelm/results_email.html', {'res': res})
+    html_body = render_to_string('hotelm/results_email.html', {'res': res, 'destination': destination, 'check_in': check_in, 'check_out': check_out})
     msg = EmailMultiAlternatives(
         subject = subject,
         body = txt_message,

@@ -56,7 +56,7 @@ def search_and_email(searchobj_id):
     # Try to email results
     try:
         if searchobj.recipient:
-            email_marriott_results(res2, searchobj.recipient)
+            email_marriott_results(res2, searchobj.recipient, searchobj.destination, searchobj.check_in, searchobj.check_out)
             print("Email results success")
     except:
         print("Email results failed")

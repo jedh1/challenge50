@@ -176,9 +176,7 @@ def email_test():
     print('email_test message sent')
 
 def test(request):
-    driver_test()
-    # scheduler = BackgroundScheduler(settings.SCHEDULER_CONFIG)
-    # scheduler.add_job(print_delay, 'interval', seconds = 15, max_instances = 3, coalesce = True, next_run_time=datetime.datetime.now())
-    # register_job(scheduler)
-    # scheduler.start()
-    return render(request, 'hotelm/search.html')
+    destination = 'Las Vegas, NV'
+    check_in = '12-20-20'
+    check_out = '12-22-20'
+    return render(request, 'hotelm/results_email.html', {'destination': destination, 'check_in': check_in, 'check_out': check_out})
