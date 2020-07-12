@@ -1,19 +1,24 @@
-{% extends 'base2.html' %}
-{% block title %} Strategy Results: {{ ticker }} {% endblock %}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bttest</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'css/xyz_plotter.css' %}">
+</head>
+<body>
+   <h1>bttest</h1>
 
-{% block body_block %}
-{% load static %}
-<div class="ml-3">
-<p>
-<h2>Strategy Results</h2>
-<p>
+   {% if intro %}
+   <p>Example plot:</p>
+   {% endif %}
 
-<br>
-Ticker: {{ ticker }}<br>
-Fast moving average: {{ fsma }}<br>
-Slow moving average: {{ ssma }}<br>
-Sharpe ratio: {{ sr }}<br>
+   <div class="plot-container">
+      {% autoescape off %}
+      {{ plot_div }}
+      {% endautoescape %}
+   </div>
 
-</div>
-{{ div | safe }}
-{% endblock %}
+</body>
+</html>

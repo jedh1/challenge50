@@ -71,40 +71,42 @@ def btsingle(stock_in, start_date_in, end_date_in, pfast, pslow):
         sell_price_col = sell_price,
     ))
 
-    #plot strategy
-    plot = figure(title = '', x_axis_label= 'Date', x_axis_type='datetime', y_axis_label= 'Price (US$)', plot_width=800, plot_height=400)
-    # plot.sizing_mode = 'scale_both'
-    plot_buy = plot.triangle(x='buy_date_col', y='buy_price_col', size = 5, color = "green", source=buy_source)
-    plot_sell = plot.inverted_triangle(x='sell_date_col', y='sell_price_col', size = 5, color = "red", source=sell_source)
-    hover_buy = HoverTool(
-        renderers=[plot_buy],
-        tooltips=[
-            ('Date', '$x{%F}'),
-            ('Buy price', '$@buy_price_col{%0.00f}'),
-            ],
-        formatters={
-            '$x': 'datetime',
-            '@buy_price_col' : 'printf',
-        },
-        mode='mouse')
-    hover_sell = HoverTool(
-        renderers=[plot_sell],
-        tooltips=[
-            ('Date', '$x{%F}'),
-            ('Sell price', '$@sell_price_col{%0.00f}'),
-            ],
-        formatters={
-            '$x': 'datetime',
-            '@sell_price_col' : 'printf',
-        },
-        mode='mouse')
-    plot.add_tools(hover_buy, hover_sell)
+    # #plot strategy
+    # plot = figure(title = '', x_axis_label= 'Date', x_axis_type='datetime', y_axis_label= 'Price (US$)', plot_width=800, plot_height=400)
+    # # plot.sizing_mode = 'scale_both'
+    # plot_buy = plot.triangle(x='buy_date_col', y='buy_price_col', size = 5, color = "green", source=buy_source)
+    # plot_sell = plot.inverted_triangle(x='sell_date_col', y='sell_price_col', size = 5, color = "red", source=sell_source)
+    # hover_buy = HoverTool(
+    #     renderers=[plot_buy],
+    #     tooltips=[
+    #         ('Date', '$x{%F}'),
+    #         ('Buy price', '$@buy_price_col{%0.00f}'),
+    #         ],
+    #     formatters={
+    #         '$x': 'datetime',
+    #         '@buy_price_col' : 'printf',
+    #     },
+    #     mode='mouse')
+    # hover_sell = HoverTool(
+    #     renderers=[plot_sell],
+    #     tooltips=[
+    #         ('Date', '$x{%F}'),
+    #         ('Sell price', '$@sell_price_col{%0.00f}'),
+    #         ],
+    #     formatters={
+    #         '$x': 'datetime',
+    #         '@sell_price_col' : 'printf',
+    #     },
+    #     mode='mouse')
+    # plot.add_tools(hover_buy, hover_sell)
 
     #plot stock data
     stock = pdr.get_data_yahoo(stock_in, start=start_date_in, end=end_date_in)
     stock_dates = pd.to_datetime(stock.index)
     stock_close = stock['Close']
-    plot_stock = plot.line(x=stock_dates, y=stock_close, line_width=1)
-    script, div = components(plot, CDN)
+    # plot_stock = plot.line(x=stock_dates, y=stock_close, line_width=1)
+    # script, div = components(plot, CDN)
     print(sharpe_ratio)
-    return script, div, sharpe_ratio
+    # return script, div, sharpe_ratio
+
+    return buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close

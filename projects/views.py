@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 # For xy_plotter
 from django.contrib import messages
 from plotly.offline import plot
-from plotly.graph_objs import Scatter
+import plotly.graph_objs as go
 import pandas as pd
 # For backtesting
 from pandas_datareader import data as pdr
@@ -144,25 +144,27 @@ def btindex(request):
 
 def bt_ex1(request):
     #input variables
-    stock_in = 'TSLA'
-    start_date_in = '2016-01-01'
-    end_date_in = '2017-12-25'
-    pfast = 7
-    pslow = 66
-    #run strategy
-    script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
-    return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+    # stock_in = 'TSLA'
+    # start_date_in = '2016-01-01'
+    # end_date_in = '2017-12-25'
+    # pfast = 7
+    # pslow = 66
+    # #run strategy
+    # script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    # return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+    return
 
 def bt_ex2(request):
     #input variables
-    stock_in = 'SPY'
-    start_date_in = '2016-01-01'
-    end_date_in = '2019-12-25'
-    pfast = 50
-    pslow = 200
-    #run strategy
-    script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
-    return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+    # stock_in = 'SPY'
+    # start_date_in = '2016-01-01'
+    # end_date_in = '2019-12-25'
+    # pfast = 50
+    # pslow = 200
+    # #run strategy
+    # script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    # return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+    return
 
 def bttest(request):
     #input variables
@@ -172,8 +174,38 @@ def bttest(request):
     pfast = 50
     pslow = 200
     #run strategy
-    script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
-    return render(request,'bttest.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+    buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    fig = go.Figure()
+    buy_scatter = go.Scatter(x = buy_date,
+                            y = buy_price,
+                            mode='markers',
+                            name='Buy',
+                            marker_color='green')
+    sell_scatter = go.Scatter(x = sell_date,
+                            y = sell_price,
+                            mode='markers',
+                            name='Sell',
+                            marker_color='red')
+    stock_scatter = go.Scatter(x = stock_dates,
+                            y = stock_close,
+                            mode='lines',
+                            name=stock_in,
+                            marker_color='blue')
+    fig.add_trace(buy_scatter)
+    fig.add_trace(sell_scatter)
+    fig.add_trace(stock_scatter)
+    fig.update_layout(
+        title = {
+            'text': stock_in,
+            'xanchor': 'center',
+            'yanchor': 'top'
+            },
+        xaxis_title="Date",
+        yaxis_title="Price (USD)",
+    )
+    plot_div = plot(fig, output_type='div')
+    intro = False
+    return render(request,'bttest.html', {'plot_div':plot_div})
 
 # Other projects (JS based)
 def clockview(request):
