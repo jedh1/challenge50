@@ -109,4 +109,4 @@ def btsingle(stock_in, start_date_in, end_date_in, pfast, pslow):
     print(sharpe_ratio)
     # return script, div, sharpe_ratio
 
-    return buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close
+    return buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close, sharpe_ratio

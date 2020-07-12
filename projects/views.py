@@ -131,12 +131,51 @@ def btindex(request):
                 return redirect('btindex')
 
             try:
-                script, div, sr = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+                buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
             except:
                 messages.error(request, 'Form error')
                 return redirect('btindex')
-
-            return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sr, 'ticker': stock_in.upper(), 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+            #plot
+            fig = go.Figure()
+            buy_scatter = go.Scatter(x = buy_date,
+                                    y = buy_price,
+                                    mode='markers',
+                                    name='Buy',
+                                    marker=dict(
+                                        color='green',
+                                        size=3,
+                                    ))
+            sell_scatter = go.Scatter(x = sell_date,
+                                    y = sell_price,
+                                    mode='markers',
+                                    name='Sell',
+                                    marker=dict(
+                                        color='red',
+                                        size=3,
+                                    ))
+            stock_scatter = go.Scatter(x = stock_dates,
+                                    y = stock_close,
+                                    mode='lines',
+                                    name=stock_in,
+                                    opacity=0.5,
+                                    marker_color='blue')
+            fig.add_trace(stock_scatter)
+            fig.add_trace(buy_scatter)
+            fig.add_trace(sell_scatter)
+            fig.update_layout(
+                title = {
+                    'text': stock_in,
+                    'y': 0.9,
+                    'x': 0.5,
+                    'xanchor': 'center',
+                    'yanchor': 'top'
+                    },
+                xaxis_title="Date",
+                yaxis_title="Price (USD)",
+            )
+            plot_div = plot(fig, output_type='div')
+            intro = False
+            return render(request,'btresults.html', {'plot_div':plot_div, 'sr':sharpe_ratio, 'ticker': stock_in.upper(), 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
     # initial form screen
     else:
         form = sma_search()
@@ -144,27 +183,103 @@ def btindex(request):
 
 def bt_ex1(request):
     #input variables
-    # stock_in = 'TSLA'
-    # start_date_in = '2016-01-01'
-    # end_date_in = '2017-12-25'
-    # pfast = 7
-    # pslow = 66
-    # #run strategy
-    # script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
-    # return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
-    return
+    stock_in = 'TSLA'
+    start_date_in = '2016-01-01'
+    end_date_in = '2017-12-25'
+    pfast = 7
+    pslow = 66
+    #run strategy
+    buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    fig = go.Figure()
+    buy_scatter = go.Scatter(x = buy_date,
+                            y = buy_price,
+                            mode='markers',
+                            name='Buy',
+                            marker=dict(
+                                color='green',
+                                size=3,
+                            ))
+    sell_scatter = go.Scatter(x = sell_date,
+                            y = sell_price,
+                            mode='markers',
+                            name='Sell',
+                            marker=dict(
+                                color='red',
+                                size=3,
+                            ))
+    stock_scatter = go.Scatter(x = stock_dates,
+                            y = stock_close,
+                            mode='lines',
+                            name=stock_in,
+                            opacity=0.5,
+                            marker_color='blue')
+    fig.add_trace(stock_scatter)
+    fig.add_trace(buy_scatter)
+    fig.add_trace(sell_scatter)
+    fig.update_layout(
+        title = {
+            'text': stock_in,
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+            },
+        xaxis_title="Date",
+        yaxis_title="Price (USD)",
+    )
+    plot_div = plot(fig, output_type='div')
+    intro = False
+    return render(request,'btresults.html', {'plot_div':plot_div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
 
 def bt_ex2(request):
     #input variables
-    # stock_in = 'SPY'
-    # start_date_in = '2016-01-01'
-    # end_date_in = '2019-12-25'
-    # pfast = 50
-    # pslow = 200
-    # #run strategy
-    # script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
-    # return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
-    return
+    stock_in = 'SPY'
+    start_date_in = '2016-01-01'
+    end_date_in = '2019-12-25'
+    pfast = 50
+    pslow = 200
+    #run strategy
+    buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    fig = go.Figure()
+    buy_scatter = go.Scatter(x = buy_date,
+                            y = buy_price,
+                            mode='markers',
+                            name='Buy',
+                            marker=dict(
+                                color='green',
+                                size=3,
+                            ))
+    sell_scatter = go.Scatter(x = sell_date,
+                            y = sell_price,
+                            mode='markers',
+                            name='Sell',
+                            marker=dict(
+                                color='red',
+                                size=3,
+                            ))
+    stock_scatter = go.Scatter(x = stock_dates,
+                            y = stock_close,
+                            mode='lines',
+                            name=stock_in,
+                            opacity=0.5,
+                            marker_color='blue')
+    fig.add_trace(stock_scatter)
+    fig.add_trace(buy_scatter)
+    fig.add_trace(sell_scatter)
+    fig.update_layout(
+        title = {
+            'text': stock_in,
+            'y': 0.9,
+            'x': 0.5,
+            'xanchor': 'center',
+            'yanchor': 'top'
+            },
+        xaxis_title="Date",
+        yaxis_title="Price (USD)",
+    )
+    plot_div = plot(fig, output_type='div')
+    intro = False
+    return render(request,'btresults.html', {'plot_div':plot_div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
 
 def bttest(request):
     #input variables
@@ -174,29 +289,38 @@ def bttest(request):
     pfast = 50
     pslow = 200
     #run strategy
-    buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    buy_date, buy_price, sell_date, sell_price, stock_dates, stock_close, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
     fig = go.Figure()
     buy_scatter = go.Scatter(x = buy_date,
                             y = buy_price,
                             mode='markers',
                             name='Buy',
-                            marker_color='green')
+                            marker=dict(
+                                color='green',
+                                size=3,
+                            ))
     sell_scatter = go.Scatter(x = sell_date,
                             y = sell_price,
                             mode='markers',
                             name='Sell',
-                            marker_color='red')
+                            marker=dict(
+                                color='red',
+                                size=3,
+                            ))
     stock_scatter = go.Scatter(x = stock_dates,
                             y = stock_close,
                             mode='lines',
                             name=stock_in,
+                            opacity=0.5,
                             marker_color='blue')
+    fig.add_trace(stock_scatter)
     fig.add_trace(buy_scatter)
     fig.add_trace(sell_scatter)
-    fig.add_trace(stock_scatter)
     fig.update_layout(
         title = {
             'text': stock_in,
+            'y': 0.9,
+            'x': 0.5,
             'xanchor': 'center',
             'yanchor': 'top'
             },
