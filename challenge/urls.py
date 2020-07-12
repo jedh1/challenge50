@@ -21,4 +21,5 @@ urlpatterns = [
     path("", include("projects.urls")),
     path("blog/", include("blog.urls")),
     path("hotelm/", include("hotelm.urls")),
+    path("backtest/", include("backtest.urls")),
 ]

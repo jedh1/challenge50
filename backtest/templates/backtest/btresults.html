@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <title>Stock Backtesting - Single Moving Average Crossover</title>
+   {% load static %}
+
+   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald" rel="stylesheet">
+   <link href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css" rel="stylesheet" type="text/css">
+   <link href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.css" rel="stylesheet" type="text/css">
+   <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
+   <script src="http://cdn.pydata.org/bokeh/release/bokeh-widgets-2.0.1.min.js"></script>
+   {{ script | safe }}
+<style>
+.navigation {
+  width: 100%;
+  background-color: #333;
+  margin: 0 !important;
+  padding: 0 !important;
+  position: absolute !important;
+  top: 0;
+}
+
+.navigation-ul {
+  display: flex;
+  margin: 0 !important;
+  padding: 11px !important;
+}
+
+.navigation-ul li {
+  list-style-type: none;
+  margin: 0 !important;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+.navigation-ul li a {
+  color: lightgrey;
+  text-align: center;
+  padding: 14px 16px !important;
+  text-decoration: none;
+}
+
+.navigation li a:hover {
+  color: darkgrey;
+}
+
+body, html {
+   font-family: Arial, sans-serif;
+   justify-content: center;
+   margin: 0;
+   height: 100%;
+   background-color: #d9e9f8;
+}
+h2 {
+   margin-top: 25px !important;
+   justify-content: center !important;
+   align-items: center !important;
+}
+
+.message-container {
+   display: flex;
+   flex-direction: row;
+   margin: 5px;
+   justify-content: center;
+   align-items: center;
+}
+
+.form-container {
+   width: 500px;
+   background-color: rgba(255, 255, 255, 0.7);
+   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+   border-radius: 5px;
+   margin: auto auto 20px auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+}
+
+.graph-container {
+   justify-content: center !important;
+   display: flex;
+   height: 400px;
+}
+
+.back-btn {
+   justify-content: center !important;
+   display: flex;
+   margin-top: 10px;
+}
+
+.back-btn input {
+   cursor: pointer;
+   color: #fff;
+   background-color: #3498db;
+   border: 2px solid #3498db;
+   border-radius: 4px;
+   font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+   <div class="navigation">
+       <ul class="navigation-ul">
+           <li><a href="{% url 'index' %}">Home</a></li>
+           <li><a href="{% url 'project_index' %}">Projects</a></li>
+           <li><a href="{% url 'blog_index' %}">Blog</a></li>
+           <li><a href="{% url 'search' %}">Marriott Search</a></li>
+           <li><a href="{% url 'about' %}">About</a></li>
+       </ul>
+   </div>
+<br>
+<div class="title"><h2>Backtest: Results</h2></div>
+
+<div class="form-container">
+   Ticker: {{ ticker }}<br>
+   {{ start }} to {{ end }}<br>
+   Fast moving average: {{ fsma }} ::: Slow moving average: {{ ssma }}<br>
+   Sharpe ratio: {{ sr }}<br>
+</div>
+
+<div class="graph-container">
+{{ div | safe }}
+</div>
+
+<div class="back-btn">
+   <form action="/btindex/">
+      <input type="submit" value="Back" />
+   </form>
+</div>
+
+</body>
+</html>

@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'projects',
     'blog',
     'hotelm',
+    'backtest',
 ]
 
 MIDDLEWARE = [
