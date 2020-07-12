@@ -1,15 +1,19 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Backtesting Strategy Results: {{ ticker }}  </title>
-        <script src="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.js"></script>
+{% extends 'base2.html' %}
+{% block title %} Strategy Results: {{ ticker }} {% endblock %}
 
-        <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-2.0.1.min.css">
+{% block body_block %}
+{% load static %}
+<div class="ml-3">
+<p>
+<h2>Strategy Results</h2>
+<p>
 
-        {{ script | safe }}
-    </head>
+<br>
+Ticker: {{ ticker }}<br>
+Fast moving average: {{ fsma }}<br>
+Slow moving average: {{ ssma }}<br>
+Sharpe ratio: {{ sr }}<br>
 
-    <body>
-      {{ div | safe }}
-    </body>
-</html>
+</div>
+{{ div | safe }}
+{% endblock %}

@@ -173,10 +173,6 @@ def bttest(request):
     pslow = 200
     #run strategy
     script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
-    plot = figure()
-    plot.circle([1,2], [3,4], size = 50)
-
-    script, div = components(plot, CDN)
     return render(request,'bttest.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
 
 # Other projects (JS based)
