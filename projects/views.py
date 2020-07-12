@@ -163,6 +163,17 @@ def bt_ex2(request):
     script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
     return render(request,'btresults.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
 
+def bttest(request):
+    #input variables
+    stock_in = 'SPY'
+    start_date_in = '2016-01-01'
+    end_date_in = '2019-12-25'
+    pfast = 50
+    pslow = 200
+    #run strategy
+    script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    return render(request,'bttest.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
+
 # Other projects (JS based)
 def clockview(request):
     return render(request, 'clockview.html')

@@ -41,4 +41,5 @@ urlpatterns = [
     path("btindex/", views.btindex, name="btindex"),
     path("bt_ex1/", views.bt_ex1, name="bt_ex1"),
     path("bt_ex2/", views.bt_ex2, name="bt_ex2"),
+    path("bttest/", views.bttest, name="bttest"),
 ]
