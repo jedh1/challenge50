@@ -12,10 +12,11 @@ import pandas as pd
 from pandas_datareader import data as pdr
 from django.contrib import messages
 from django.http import HttpResponse
-from bokeh.plotting import figure, output_file, show, ColumnDataSource
 import bokeh.layouts
+from bokeh.plotting import figure, output_file, show, ColumnDataSource
 from bokeh.embed import components
 from bokeh.models import HoverTool
+from bokeh.resources import CDN
 from datetime import date
 from .forms import sma_search
 from .btsingle import btsingle
@@ -172,6 +173,10 @@ def bttest(request):
     pslow = 200
     #run strategy
     script, div, sharpe_ratio = btsingle(stock_in, start_date_in, end_date_in, pfast, pslow)
+    plot = figure()
+    plot.circle([1,2], [3,4], size = 50)
+
+    script, div = components(plot, CDN)
     return render(request,'bttest.html', {'script':script, 'div':div, 'sr':sharpe_ratio, 'ticker': stock_in, 'fsma': pfast, 'ssma': pslow, 'start':start_date_in, 'end':end_date_in})
 
 # Other projects (JS based)
