@@ -34,7 +34,7 @@ if os.path.isfile(dotenv_file):
     }
     # SECURITY WARNING: keep the secret key used in production secret!
     SECRET_KEY = os.getenv("SECRET_KEY")
-    DEBUG = os.getenv("DEBUG")
+    # DEBUG = os.getenv("DEBUG")
 
     # Email settings local
     EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -46,7 +46,7 @@ if os.path.isfile(dotenv_file):
 else:
     # Production settings
     # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = os.environ.get('debug_heroku')
+    # DEBUG = os.environ.get('debug_heroku')
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
     import dj_database_url
     DATABASES = {'default': dj_database_url.config(conn_max_age=600)}
@@ -58,6 +58,8 @@ else:
     EMAIL_HOST_PASSWORD = os.environ.get('MAILGUN_SMTP_PASSWORD', '')
     SERVER_EMAIL = 'csprojects200220@gmail.com'
 
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
 ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
