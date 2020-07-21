@@ -64,7 +64,7 @@ def xy_plotter(request):
     intro = True
     if request.method == 'GET':
         df = { "X":[-4, -3, -2, -1, 0,1,2,3,4,2,-2,-2,2,3,-3,3], "Y": [-4,5,3,-4,2,3,-3,4,-1,2,2,-2,-2,3,3,-3], "Z": [-3,2,5,3,-2,-4,5,2,1,2,4,3,0,-1,-2,-3]}
-        plot_div = plot([Scatter(
+        plot_div = plot([go.Scatter(
                         x = df['X'],
                         y = df['Y'],
                         mode='markers',
@@ -87,7 +87,7 @@ def xy_plotter(request):
             # read file
             colnames = ['X', 'Y', 'Z']
             df = pd.read_csv(test_file, names=colnames, header=None)
-            plot_div = plot([Scatter(
+            plot_div = plot([go.Scatter(
                             x = df['X'],
                             y = df['Y'],
                             mode='markers',
