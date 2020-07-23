@@ -3,7 +3,6 @@ html, body {
    padding: 0;
    width: 100%;
    height: 100%;
-   overflow-x: hidden;
 }
 .hide {
    display: none;
@@ -52,7 +51,7 @@ html, body {
    height: 40px;
    line-height: 40px;
    font-size: 1.5em;
-   background-image: url("/static/img/bird.png");
+   background-image: url("/static/img/bird.bb746a7d6d6f.png");
    background-size: cover;
 }
 

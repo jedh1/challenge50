@@ -56,7 +56,7 @@ function buildPipes(startPos){
    pipe2.classList.add("pipe");
    pipe2.style.height = totalHeight - pipe1.height - pipeSpace + "px";
    pipe2.style.left = pipe1.start + "px";
-   pipe2.style.bottom = "10px";
+   pipe2.style.bottom = "0px";
    pipe2.x = pipe1.start;
    pipe2.id = player.pipe;
    pipe2.style.backgroundColor = pipeColor;
